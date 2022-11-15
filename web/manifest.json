@@ -1,6 +1,6 @@
 {
-    "name": "course_money_record",
-    "short_name": "course_money_record",
+    "name": "moneyrecord",
+    "short_name": "moneyrecord",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

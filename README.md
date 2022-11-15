@@ -1,4 +1,4 @@
-# course_money_record
+# moneyrecord
 
 A new Flutter project.
 
