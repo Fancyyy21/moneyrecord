@@ -71,7 +71,7 @@ class _HomePageState extends State<HomePage> {
                 Builder(builder: (ctx) {
                   return Material(
                     borderRadius: BorderRadius.circular(4),
-                    color: AppColor.chart,
+                    color: AppColor.bg,
                     child: InkWell(
                       onTap: () {
                         Scaffold.of(ctx).openEndDrawer();
