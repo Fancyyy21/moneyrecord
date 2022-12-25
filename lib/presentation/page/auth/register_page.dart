@@ -60,9 +60,9 @@ class _RegisterPageState extends State<RegisterPage> {
                                 value == '' ? 'Jangan kosong' : null,
                             autovalidateMode:
                                 AutovalidateMode.onUserInteraction,
-                            style: const TextStyle(color: Colors.white),
+                            style: const TextStyle(color: Color(0XFFE8562C)),
                             decoration: InputDecoration(
-                              fillColor: AppColor.primary.withOpacity(0.5),
+                              fillColor: Color.fromARGB(255, 255, 255, 255).withOpacity(0.5),
                               filled: true,
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(30),
@@ -83,9 +83,9 @@ class _RegisterPageState extends State<RegisterPage> {
                                 value == '' ? 'Jangan kosong' : null,
                             autovalidateMode:
                                 AutovalidateMode.onUserInteraction,
-                            style: const TextStyle(color: Colors.white),
+                            style: const TextStyle(color: Color(0XFFE8562C)),
                             decoration: InputDecoration(
-                              fillColor: AppColor.primary.withOpacity(0.5),
+                              fillColor: Color.fromARGB(255, 255, 255, 255).withOpacity(0.5),
                               filled: true,
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(30),
@@ -107,9 +107,9 @@ class _RegisterPageState extends State<RegisterPage> {
                             autovalidateMode:
                                 AutovalidateMode.onUserInteraction,
                             obscureText: true,
-                            style: const TextStyle(color: Colors.white),
+                            style: const TextStyle(color: Color(0XFFE8562C)),
                             decoration: InputDecoration(
-                              fillColor: AppColor.primary.withOpacity(0.5),
+                              fillColor: Color.fromARGB(255, 255, 255, 255).withOpacity(0.5),
                               filled: true,
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(30),
