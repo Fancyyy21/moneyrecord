@@ -38,7 +38,17 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       endDrawer: drawer(),
-      body: Column(
+      body: Container(
+        
+                      decoration: const BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('asset/BACKGROUND2.png'),
+                          fit:BoxFit.cover
+                        )
+                      ),
+                    
+
+      child : Column(
         children: [
           Padding(
             padding: const EdgeInsets.fromLTRB(20, 50, 20, 30),
@@ -115,8 +125,19 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   DView.spaceHeight(30),
+
+                  /*Center(
+                    child: Container(
+                      decoration: const BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('asset/warnawarni.jpg'),
+                          fit:BoxFit.cover
+                        )
+                      ),
+                    )
+                    ),*/
                   Text(
-                    'Pengeluaran Minggu Ini',
+                    'Pengeluaran Mingguwwss Ini',
                     style: Theme.of(context).textTheme.headline6!.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
@@ -136,7 +157,9 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
+          
         ],
+      ),
       ),
     );
   }
