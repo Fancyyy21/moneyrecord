@@ -106,7 +106,7 @@ class _HomePageState extends State<HomePage> {
                 padding: const EdgeInsets.fromLTRB(20, 0, 20, 30),
                 children: [
                   Text(
-                    'Pengeluaran Hari Ini',
+                    'Data Pengeluaran Hari Ini',
                     style: Theme.of(context).textTheme.headline6!.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
@@ -137,7 +137,7 @@ class _HomePageState extends State<HomePage> {
                     )
                     ),*/
                   Text(
-                    'Pengeluaran Mingguwwss Ini',
+                    'Data Pengeluaran Minggu Ini',
                     style: Theme.of(context).textTheme.headline6!.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
@@ -146,7 +146,7 @@ class _HomePageState extends State<HomePage> {
                   weekly(),
                   DView.spaceHeight(30),
                   Text(
-                    'Perbandingan Bulan Ini',
+                    'Data Perbandingan Bulan Ini',
                     style: Theme.of(context).textTheme.headline6!.copyWith(
                           fontWeight: FontWeight.bold,
                         ),

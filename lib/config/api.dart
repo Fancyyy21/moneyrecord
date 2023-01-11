@@ -1,5 +1,5 @@
 class Api {
-  static const baseUrl = 'http://192.168.1.8/api_money_record';
+  static const baseUrl = 'http://192.168.68.114/api_money_record';
 
   static const history = '$baseUrl/history';
   static const user = '$baseUrl/user';
