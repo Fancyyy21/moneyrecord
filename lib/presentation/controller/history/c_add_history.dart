@@ -32,4 +32,12 @@ class CAddHistory extends GetxController {
     });
     update();
   }
+
+  count1() {
+    _total.value = items.map((e) => e['price']).toList().fold(0.0,
+        (previousValue, element) {
+      return double.parse(previousValue.toString()) - double.parse(element);
+    });
+    update();
+  }
 }

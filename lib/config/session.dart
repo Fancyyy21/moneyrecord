@@ -5,6 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../presentation/controller/c_user.dart';
 
+// Fungsi dari session ini untuk Session User, getDataUser dan clearDataUser
 class Session {
   static Future<bool> saveUser(User user) async {
     final pref = await SharedPreferences.getInstance();

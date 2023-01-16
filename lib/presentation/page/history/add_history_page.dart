@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:get/get_connect/http/src/utils/utils.dart';
+import 'package:mockito/annotations.dart';
 import 'package:moneyrecord/data/source/source_history.dart';
 import 'package:d_input/d_input.dart';
 import 'package:d_view/d_view.dart';
@@ -20,15 +22,15 @@ class AddHistoryPage extends StatelessWidget {
   final cUser = Get.put(CUser());
   final controllerName = TextEditingController();
   final controllerPrice = TextEditingController();
+  final controllerPrice2 = TextEditingController();
 
   addHistory() async {
     bool success = await SourceHistory.add(
-      cUser.data.idUser!,
-      cAddHistory.date,
-      cAddHistory.type,
-      jsonEncode(cAddHistory.items),
-      cAddHistory.total.toString(),
-    );
+        cUser.data.idUser!,
+        cAddHistory.date,
+        cAddHistory.type,
+        jsonEncode(cAddHistory.items),
+        cAddHistory.total.toString());
     if (success) {
       Future.delayed(const Duration(milliseconds: 3000), () {
         Get.back(result: true);
@@ -36,6 +38,31 @@ class AddHistoryPage extends StatelessWidget {
     }
   }
 
+  validation() async {
+    if (controllerPrice2 == controllerPrice) {
+      print("Pengeluaran melebihi pemasukan !!");
+    } else {
+      true;
+    }
+  }
+
+/*   DValidator hargaValidator(String? value) {
+    int pemasukan = int.tryParse(value.toString()) ?? 0;
+    int harga = int.tryParse(controllerPrice2.text) ?? 0;
+    if (harga >= pemasukan) {
+      return "Pemasukan Lebih Kecil Harga";
+    }
+  }
+
+  DValidator? pemasukanValidator(String? value) {
+    int pemasukan = int.tryParse(controllerName.toString()) ?? 0;
+    int harga = int.tryParse(value.toString()) ?? 0;
+    if (harga >= pemasukan) {
+      return "Pemasukan Lebih Kecil Harga";
+    }
+    return null;
+  }
+ */
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -105,21 +132,77 @@ class AddHistoryPage extends StatelessWidget {
           DInput(
             controller: controllerPrice,
             hint: '30000',
+            title: 'Pemasukan',
+            inputType: TextInputType.number,
+            validator: (value) {
+              if (value != null && controllerPrice2.text.isNotEmpty) {
+                int pemasukan = int.tryParse(value.toString()) ?? 0;
+                int harga = int.tryParse(controllerPrice2.text) ?? 0;
+                if (harga >= pemasukan) {
+                  return "Pemasukan Lebih Kecil dari Harga";
+                }
+              }
+
+              return null;
+            },
+          ),
+          DView.spaceHeight(),
+          DInput(
+            controller: controllerPrice2,
+            hint: '30000',
             title: 'Harga',
             inputType: TextInputType.number,
+            validator: (value) {
+              if (value != null && controllerPrice.text.isNotEmpty) {
+                int pemasukan = int.tryParse(controllerPrice.text) ?? 0;
+                int harga = int.tryParse(value.toString()) ?? 0;
+                if (harga >= pemasukan) {
+                  return "Pemasukan Lebih Kecil dari Harga";
+                }
+              }
+
+              return null;
+            },
           ),
           DView.spaceHeight(),
           ElevatedButton(
             onPressed: () {
-              cAddHistory.addItem({
-                'name': controllerName.text,
-                'price': controllerPrice.text,
-              });
-              controllerName.clear();
-              controllerPrice.clear();
+              int pemasukan = int.tryParse(controllerPrice.text) ?? 0;
+              int harga = int.tryParse(controllerPrice2.text) ?? 0;
+              if (harga >= pemasukan) {
+                const snackBar = SnackBar(
+                  content: Text('Check Harga atau Pemasukkan'),
+                );
+                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+              } else {
+                cAddHistory.addItem({
+                  'name': controllerName.text,
+                  'price': controllerPrice2.text,
+                  'income': controllerPrice.text
+                });
+                controllerName.clear();
+                controllerPrice.clear();
+                controllerPrice2.clear();
+              }
             },
             child: const Text('Tambah ke Items'),
           ),
+          /*if () {
+                cAddHistory.addItem({
+                  'name': controllerName.text,
+                  'price': controllerPrice.text,
+                  'price2': controllerPrice2.text,
+                });
+              } else {
+                print("Pengeluaran melebihi pemasukan !!");
+              }
+              cAddHistory.addItem({});
+              controllerName.clear();
+              controllerPrice.clear();
+              controllerPrice2.clear();
+            },
+            child: const Text('Tambah ke Items'),
+          ),*/
           DView.spaceHeight(),
           Center(
             child: Container(

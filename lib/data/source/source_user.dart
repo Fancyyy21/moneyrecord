@@ -2,7 +2,6 @@ import 'package:moneyrecord/config/api.dart';
 import 'package:moneyrecord/config/app_request.dart';
 import 'package:moneyrecord/config/session.dart';
 import 'package:d_info/d_info.dart';
-
 import '../model/user.dart';
 
 class SourceUser {
