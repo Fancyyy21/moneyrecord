@@ -13,6 +13,8 @@ import 'package:get/get.dart';
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
+  get email => null;
+
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
