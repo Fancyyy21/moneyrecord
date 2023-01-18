@@ -157,7 +157,7 @@ class AddHistoryPage extends StatelessWidget {
                 int pemasukan = int.tryParse(controllerPrice.text) ?? 0;
                 int harga = int.tryParse(value.toString()) ?? 0;
                 if (harga >= pemasukan) {
-                  return "Pemasukan Lebih Kecil dari Harga";
+                  return "Harga Lebih Kecil dari Pemasukan";
                 }
               }
 
