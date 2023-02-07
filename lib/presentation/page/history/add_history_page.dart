@@ -128,6 +128,8 @@ class AddHistoryPage extends StatelessWidget {
             hint: 'Jualan',
             title: 'Sumber/Objek Pengeluaran',
           ),
+
+
           DView.spaceHeight(),
           DInput(
             controller: controllerPrice,
@@ -146,6 +148,8 @@ class AddHistoryPage extends StatelessWidget {
               return null;
             },
           ),
+
+
           DView.spaceHeight(),
           DInput(
             controller: controllerPrice2,

@@ -47,7 +47,6 @@ class _HomePageState extends State<HomePage> {
                         )
                       ),
                     
-
       child : Column(
         children: [
           Padding(
@@ -105,15 +104,40 @@ class _HomePageState extends State<HomePage> {
               child: ListView(
                 padding: const EdgeInsets.fromLTRB(20, 0, 20, 30),
                 children: [
-                  Text(
-                    'Data Pengeluaran Hari Ini',
+
+                  /*Text(
+                    'Data Perbandingan Bulan Ini',
                     style: Theme.of(context).textTheme.headline6!.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
                   ),
+
+                  
                   DView.spaceHeight(),
-                  cardToday(context),
-                  DView.spaceHeight(30),
+                  monthly(context),
+
+                  Center(
+                    child: Container(
+                      height: 5,
+                      width: 80,
+                      decoration: BoxDecoration(
+                        color: AppColor.bg,
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                    ),
+                  ), */
+
+
+                Text(
+                    'Informasi Data Saldo',
+                    style: Theme.of(context).textTheme.headline6!.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
+                  ),
+
+                  DView.spaceHeight(),
+                  monthly1(context),
+
                   Center(
                     child: Container(
                       height: 5,
@@ -124,7 +148,29 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                   ),
-                  DView.spaceHeight(30),
+                  DView.spaceHeight(20),
+
+
+                  Text(
+                    'Data Pengeluaran Hari Ini',
+                    style: Theme.of(context).textTheme.headline6!.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
+                  ),
+                  DView.spaceHeight(),
+                  cardToday(context),
+                  DView.spaceHeight(20),
+                  Center(
+                    child: Container(
+                      height: 5,
+                      width: 80,
+                      decoration: BoxDecoration(
+                        color: AppColor.bg,
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                    ),
+                  ),
+                  DView.spaceHeight(20),
 
                   /*Center(
                     child: Container(
@@ -136,28 +182,46 @@ class _HomePageState extends State<HomePage> {
                       ),
                     )
                     ),*/
+
+                  Text(
+                    'Data Pemasukan Minggu Ini',
+                    style: Theme.of(context).textTheme.headline6!.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
+                  ),
+
+
+                  DView.spaceHeight(),
+                  weekly(),
+                  DView.spaceHeight(30),
+
                   Text(
                     'Data Pengeluaran Minggu Ini',
                     style: Theme.of(context).textTheme.headline6!.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
                   ),
+
+
                   DView.spaceHeight(),
                   weekly(),
                   DView.spaceHeight(30),
+
+
                   Text(
                     'Data Perbandingan Bulan Ini',
                     style: Theme.of(context).textTheme.headline6!.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
                   ),
+
+                  
                   DView.spaceHeight(),
                   monthly(context),
                 ],
               ),
             ),
           ),
-          
         ],
       ),
       ),
@@ -233,6 +297,8 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
+
+
           ListTile(
             onTap: () {
               Get.to(() => AddHistoryPage())?.then((value) {
@@ -246,7 +312,9 @@ class _HomePageState extends State<HomePage> {
             title: const Text('Tambah Baru'),
             trailing: const Icon(Icons.navigate_next),
           ),
+
           const Divider(height: 1),
+
           ListTile(
             onTap: () {
               Get.to(() => const IncomeOutcomePage(
@@ -258,7 +326,9 @@ class _HomePageState extends State<HomePage> {
             title: const Text('Pemasukan'),
             trailing: const Icon(Icons.navigate_next),
           ),
+
           const Divider(height: 1),
+
           ListTile(
             onTap: () {
               Get.to(() => const IncomeOutcomePage(
@@ -270,7 +340,9 @@ class _HomePageState extends State<HomePage> {
             title: const Text('Pengeluaran'),
             trailing: const Icon(Icons.navigate_next),
           ),
+
           const Divider(height: 1),
+
           ListTile(
             onTap: () {
               Get.to(() => const HistoryPage());
@@ -280,10 +352,118 @@ class _HomePageState extends State<HomePage> {
             title: const Text('Riwayat'),
             trailing: const Icon(Icons.navigate_next),
           ),
+
           const Divider(height: 1),
+          
         ],
       ),
     );
+  }
+
+  Row monthly1(BuildContext context) {
+    return Row(
+      children: [
+        
+        SizedBox(
+          width: MediaQuery.of(context).size.width * 0.8,
+          height: MediaQuery.of(context).size.width * 0.14,
+          child: Stack(
+            children: [
+
+             // DView.spaceHeight(10),
+            //const Text('Atau setara:'),
+            
+            Obx(() {
+              return Text(
+                
+                AppFormat.currency(cHome.differentMonth.toString()),
+                style: const TextStyle(
+                  color: AppColor.primary,
+                  fontSize: 34,
+                  fontWeight: FontWeight.bold,
+                ),
+              );
+            }),
+              /*Obx(() {
+                return DChartPie(
+                  data: [
+                    {'domain': 'income', 'measure': cHome.monthIncome},
+                    {'domain': 'outcome', 'measure': cHome.monthOutcome},
+                    if (cHome.monthIncome == 0 && cHome.monthOutcome == 0)
+                      {'domain': 'nol', 'measure': 1},
+                  ],
+                  fillColor: (pieData, index) {
+                    switch (pieData['domain']) {
+                      case 'income':
+                        return AppColor.primary;
+                      case 'outcome':
+                        return AppColor.chart;
+                      default:
+                        return AppColor.bg.withOpacity(0.5);
+                    }
+                  },
+                  donutWidth: 20,
+                  labelColor: Colors.transparent,
+                  showLabelLine: false,
+                );
+              }),*/
+              
+              /*Center(
+                child: Obx(() {
+                  return Text(
+                    '${cHome.percentIncome}%',
+                    style: Theme.of(context).textTheme.headline4!.copyWith(
+                          color: AppColor.primary,
+                        ),
+                  );
+                }),
+              ),*/
+
+            ],
+          ),
+        ),
+
+
+        /*Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Container(
+                  height: 16,
+                  width: 16,
+                  color: AppColor.primary,
+                ),
+                DView.spaceWidth(8),
+                const Text('Pemasukan'),
+              ],
+            ),
+            DView.spaceHeight(8),
+            Row(
+              children: [
+                Container(
+                  height: 16,
+                  width: 16,
+                  color: AppColor.chart,
+                ),
+                DView.spaceWidth(8),
+                const Text('Pengeluaran'),
+              ],
+            ),
+            DView.spaceHeight(20),
+            Obx(() {
+              return Text(cHome.monthPercent);
+            }),*/
+
+
+            
+
+
+          //],
+        //),
+
+      //],
+      ]);
   }
 
   Row monthly(BuildContext context) {
