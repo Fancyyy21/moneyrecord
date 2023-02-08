@@ -8,8 +8,17 @@ class CHome extends GetxController {
   final _todayPercent = ''.obs;
   String get todayPercent => _todayPercent.value;
 
+  final _todayIncome = 0.0.obs;
+  double get todayIncome => _todayIncome.value;
+
+  final _todayIncomePercent = ''.obs;
+  String get todayIncomePercent => _todayIncomePercent.value;
+
   final _week = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0].obs;
+  final _weeklyIncome = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0].obs;
+
   List<double> get week => _week.value;
+  List<double> get weeklyIncome => _weeklyIncome.value;
 
   List<String> get days => ['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min'];
   List<String> weekText() {
@@ -57,6 +66,8 @@ class CHome extends GetxController {
             ? '+${percent.toStringAsFixed(1)}% dibanding kemarin'
             : '-${percent.toStringAsFixed(1)}% dibanding kemarin';
 
+    _income(data);
+
     _week.value = List.castFrom(data['week'].map((e) => e.toDouble()).toList());
 
     _monthIncome.value = data['month']['income'].toDouble();
@@ -73,5 +84,25 @@ class CHome extends GetxController {
         : isPlusMonth
             ? 'Pemasukan\nlebih besar $percentIncome%\ndari Pengeluaran'
             : 'Pemasukan\nlebih kecil $percentIncome%\ndari Pengeluaran';
+  }
+
+  void _income(Map data) {
+    _todayIncome.value = data['todayIncome'].toDouble();
+    double yesterday = data['yesterdayIncome'].toDouble();
+    double different = (todayIncome - yesterday).abs();
+    double dividerToday =
+        (todayIncome + yesterday) == 0 ? 1 : (todayIncome + yesterday);
+    double percent = (different / dividerToday) * 100;
+    bool isSame = todayIncome.isEqual(yesterday);
+    bool isPlus = todayIncome.isGreaterThan(yesterday);
+
+    _todayIncomePercent.value = isSame
+        ? '100% sama dengan kemarin'
+        : isPlus
+            ? '+${percent.toStringAsFixed(1)}% dibanding kemarin'
+            : '-${percent.toStringAsFixed(1)}% dibanding kemarin';
+
+    _weeklyIncome.value =
+        List.castFrom(data['weeklyIncome'].map((e) => e.toDouble()).toList());
   }
 }

@@ -39,83 +39,75 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       endDrawer: drawer(),
       body: Container(
-        
-                      decoration: const BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage('asset/BACKGROUND2.png'),
-                          fit:BoxFit.cover
-                        )
-                      ),
-                    
-      child : Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.fromLTRB(20, 50, 20, 30),
-            child: Row(
-              children: [
-                Image.asset(AppAsset.profile),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        'Hi,',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                        ),
-                      ),
-                      Obx(() {
-                        return Text(
-                          cUser.data.name ?? '',
-                          style: const TextStyle(
+        decoration: const BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage('asset/BACKGROUND2.png'), fit: BoxFit.cover)),
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 50, 20, 30),
+              child: Row(
+                children: [
+                  Image.asset(AppAsset.profile),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          'Hi,',
+                          style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 20,
                           ),
-                        );
-                      })
-                    ],
-                  ),
-                ),
-                Builder(builder: (ctx) {
-                  return Material(
-                    borderRadius: BorderRadius.circular(4),
-                    color: AppColor.bg,
-                    child: InkWell(
-                      onTap: () {
-                        Scaffold.of(ctx).openEndDrawer();
-                      },
-                      borderRadius: BorderRadius.circular(4),
-                      child: const Padding(
-                        padding: EdgeInsets.all(10),
-                        child: Icon(Icons.menu, color: AppColor.primary),
-                      ),
+                        ),
+                        Obx(() {
+                          return Text(
+                            cUser.data.name ?? '',
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                            ),
+                          );
+                        })
+                      ],
                     ),
-                  );
-                }),
-              ],
+                  ),
+                  Builder(builder: (ctx) {
+                    return Material(
+                      borderRadius: BorderRadius.circular(4),
+                      color: AppColor.bg,
+                      child: InkWell(
+                        onTap: () {
+                          Scaffold.of(ctx).openEndDrawer();
+                        },
+                        borderRadius: BorderRadius.circular(4),
+                        child: const Padding(
+                          padding: EdgeInsets.all(10),
+                          child: Icon(Icons.menu, color: AppColor.primary),
+                        ),
+                      ),
+                    );
+                  }),
+                ],
+              ),
             ),
-          ),
-          Expanded(
-            child: RefreshIndicator(
-              onRefresh: () async {
-                cHome.getAnalysis(cUser.data.idUser!);
-              },
-              child: ListView(
-                padding: const EdgeInsets.fromLTRB(20, 0, 20, 30),
-                children: [
-
-                  /*Text(
+            Expanded(
+              child: RefreshIndicator(
+                onRefresh: () async {
+                  cHome.getAnalysis(cUser.data.idUser!);
+                },
+                child: ListView(
+                  padding: const EdgeInsets.fromLTRB(20, 0, 20, 30),
+                  children: [
+                    /*Text(
                     'Data Perbandingan Bulan Ini',
                     style: Theme.of(context).textTheme.headline6!.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
                   ),
-
                   
                   DView.spaceHeight(),
                   monthly(context),
-
                   Center(
                     child: Container(
                       height: 5,
@@ -127,52 +119,47 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ), */
 
-
-                Text(
-                    'Informasi Data Saldo',
-                    style: Theme.of(context).textTheme.headline6!.copyWith(
-                          fontWeight: FontWeight.bold,
+                    Text(
+                      'Informasi Data Saldo',
+                      style: Theme.of(context).textTheme.headline6!.copyWith(
+                            fontWeight: FontWeight.bold,
+                          ),
+                    ),
+                    DView.spaceHeight(),
+                    monthly1(context),
+                    Center(
+                      child: Container(
+                        height: 5,
+                        width: 80,
+                        decoration: BoxDecoration(
+                          color: AppColor.bg,
+                          borderRadius: BorderRadius.circular(30),
                         ),
-                  ),
-
-                  DView.spaceHeight(),
-                  monthly1(context),
-
-                  Center(
-                    child: Container(
-                      height: 5,
-                      width: 80,
-                      decoration: BoxDecoration(
-                        color: AppColor.bg,
-                        borderRadius: BorderRadius.circular(30),
                       ),
                     ),
-                  ),
-                  DView.spaceHeight(20),
-
-
-                  Text(
-                    'Data Pengeluaran Hari Ini',
-                    style: Theme.of(context).textTheme.headline6!.copyWith(
-                          fontWeight: FontWeight.bold,
+                    DView.spaceHeight(20),
+                    Text(
+                      'Data Pengeluaran Hari Ini',
+                      style: Theme.of(context).textTheme.headline6!.copyWith(
+                            fontWeight: FontWeight.bold,
+                          ),
+                    ),
+                    DView.spaceHeight(),
+                    cardToday(context),
+                    DView.spaceHeight(30),
+                    Center(
+                      child: Container(
+                        height: 5,
+                        width: 80,
+                        decoration: BoxDecoration(
+                          color: AppColor.bg,
+                          borderRadius: BorderRadius.circular(30),
                         ),
-                  ),
-                  DView.spaceHeight(),
-                  cardToday(context),
-                  DView.spaceHeight(20),
-                  Center(
-                    child: Container(
-                      height: 5,
-                      width: 80,
-                      decoration: BoxDecoration(
-                        color: AppColor.bg,
-                        borderRadius: BorderRadius.circular(30),
                       ),
                     ),
-                  ),
-                  DView.spaceHeight(20),
+                    DView.spaceHeight(30),
 
-                  /*Center(
+                    /*Center(
                     child: Container(
                       decoration: const BoxDecoration(
                         image: DecorationImage(
@@ -182,48 +169,49 @@ class _HomePageState extends State<HomePage> {
                       ),
                     )
                     ),*/
+                    Text(
+                      'Data Pemasukan Minggu Ini',
+                      style: Theme.of(context).textTheme.headline6!.copyWith(
+                            fontWeight: FontWeight.bold,
+                          ),
+                    ),
+                    DView.spaceHeight(),
+                    weekly(true),
+                    DView.spaceHeight(30),
 
-                  Text(
-                    'Data Pemasukan Minggu Ini',
-                    style: Theme.of(context).textTheme.headline6!.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
-                  ),
-
-
-                  DView.spaceHeight(),
-                  weekly(),
-                  DView.spaceHeight(30),
-
-                  Text(
-                    'Data Pengeluaran Minggu Ini',
-                    style: Theme.of(context).textTheme.headline6!.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
-                  ),
-
-
-                  DView.spaceHeight(),
-                  weekly(),
-                  DView.spaceHeight(30),
-
-
-                  Text(
-                    'Data Perbandingan Bulan Ini',
-                    style: Theme.of(context).textTheme.headline6!.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
-                  ),
-
-                  
-                  DView.spaceHeight(),
-                  monthly(context),
-                ],
+                    /*Center(
+                    child: Container(
+                      decoration: const BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('asset/warnawarni.jpg'),
+                          fit:BoxFit.cover
+                        )
+                      ),
+                    )
+                    ),*/
+                    Text(
+                      'Data Pengeluaran Minggu Ini',
+                      style: Theme.of(context).textTheme.headline6!.copyWith(
+                            fontWeight: FontWeight.bold,
+                          ),
+                    ),
+                    DView.spaceHeight(),
+                    weekly(false),
+                    DView.spaceHeight(30),
+                    Text(
+                      'Data Perbandingan Bulan Ini',
+                      style: Theme.of(context).textTheme.headline6!.copyWith(
+                            fontWeight: FontWeight.bold,
+                          ),
+                    ),
+                    DView.spaceHeight(),
+                    monthly(context),
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
-      ),
+          ],
+        ),
       ),
     );
   }
@@ -297,8 +285,6 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
-
-
           ListTile(
             onTap: () {
               Get.to(() => AddHistoryPage())?.then((value) {
@@ -312,9 +298,7 @@ class _HomePageState extends State<HomePage> {
             title: const Text('Tambah Baru'),
             trailing: const Icon(Icons.navigate_next),
           ),
-
           const Divider(height: 1),
-
           ListTile(
             onTap: () {
               Get.to(() => const IncomeOutcomePage(
@@ -326,9 +310,7 @@ class _HomePageState extends State<HomePage> {
             title: const Text('Pemasukan'),
             trailing: const Icon(Icons.navigate_next),
           ),
-
           const Divider(height: 1),
-
           ListTile(
             onTap: () {
               Get.to(() => const IncomeOutcomePage(
@@ -340,9 +322,7 @@ class _HomePageState extends State<HomePage> {
             title: const Text('Pengeluaran'),
             trailing: const Icon(Icons.navigate_next),
           ),
-
           const Divider(height: 1),
-
           ListTile(
             onTap: () {
               Get.to(() => const HistoryPage());
@@ -352,30 +332,34 @@ class _HomePageState extends State<HomePage> {
             title: const Text('Riwayat'),
             trailing: const Icon(Icons.navigate_next),
           ),
-
           const Divider(height: 1),
-          
+          /*ListTile(
+            onTap: () {
+              Get.to(() => const KeteranganPage());
+            },
+            leading: const Icon(Icons.description),
+            horizontalTitleGap: 0,
+            title: const Text('Keterangan'),
+            trailing: const Icon(Icons.navigate_next),
+          ),
+          const Divider(height: 1),*/
         ],
       ),
     );
   }
 
   Row monthly1(BuildContext context) {
-    return Row(
-      children: [
-        
-        SizedBox(
-          width: MediaQuery.of(context).size.width * 0.8,
-          height: MediaQuery.of(context).size.width * 0.14,
-          child: Stack(
-            children: [
-
-             // DView.spaceHeight(10),
+    return Row(children: [
+      SizedBox(
+        width: MediaQuery.of(context).size.width * 0.8,
+        height: MediaQuery.of(context).size.width * 0.14,
+        child: Stack(
+          children: [
+            // DView.spaceHeight(10),
             //const Text('Atau setara:'),
-            
+
             Obx(() {
               return Text(
-                
                 AppFormat.currency(cHome.differentMonth.toString()),
                 style: const TextStyle(
                   color: AppColor.primary,
@@ -384,7 +368,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               );
             }),
-              /*Obx(() {
+            /*Obx(() {
                 return DChartPie(
                   data: [
                     {'domain': 'income', 'measure': cHome.monthIncome},
@@ -407,8 +391,8 @@ class _HomePageState extends State<HomePage> {
                   showLabelLine: false,
                 );
               }),*/
-              
-              /*Center(
+
+            /*Center(
                 child: Obx(() {
                   return Text(
                     '${cHome.percentIncome}%',
@@ -418,13 +402,11 @@ class _HomePageState extends State<HomePage> {
                   );
                 }),
               ),*/
-
-            ],
-          ),
+          ],
         ),
+      ),
 
-
-        /*Column(
+      /*Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
@@ -455,15 +437,11 @@ class _HomePageState extends State<HomePage> {
               return Text(cHome.monthPercent);
             }),*/
 
-
-            
-
-
-          //],
-        //),
+      //],
+      //),
 
       //],
-      ]);
+    ]);
   }
 
   Row monthly(BuildContext context) {
@@ -558,7 +536,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  AspectRatio weekly() {
+  AspectRatio weekly(bool isIncome) {
     return AspectRatio(
       aspectRatio: 16 / 9,
       child: Obx(() {
@@ -569,7 +547,8 @@ class _HomePageState extends State<HomePage> {
               'data': List.generate(7, (index) {
                 return {
                   'domain': cHome.weekText()[index],
-                  'measure': cHome.week[index]
+                  'measure':
+                      isIncome ? cHome.weeklyIncome[index] : cHome.week[index]
                 };
               })
             },
