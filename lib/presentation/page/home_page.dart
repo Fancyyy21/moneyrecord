@@ -287,7 +287,9 @@ class _HomePageState extends State<HomePage> {
           ),
           ListTile(
             onTap: () {
-              Get.to(() => AddHistoryPage())?.then((value) {
+              Get.to(() => AddHistoryPage(
+                    saldo: cHome.differentMonth,
+                  ))?.then((value) {
                 if (value ?? false) {
                   cHome.getAnalysis(cUser.data.idUser!);
                 }
@@ -323,6 +325,8 @@ class _HomePageState extends State<HomePage> {
             trailing: const Icon(Icons.navigate_next),
           ),
           const Divider(height: 1),
+
+
           ListTile(
             onTap: () {
               Get.to(() => const HistoryPage());
@@ -332,17 +336,18 @@ class _HomePageState extends State<HomePage> {
             title: const Text('Riwayat'),
             trailing: const Icon(Icons.navigate_next),
           ),
-          const Divider(height: 1),
-          /*ListTile(
-            onTap: () {
-              Get.to(() => const KeteranganPage());
-            },
-            leading: const Icon(Icons.description),
-            horizontalTitleGap: 0,
-            title: const Text('Keterangan'),
-            trailing: const Icon(Icons.navigate_next),
+          const Divider(height: 8),
+
+          ListTile(
+            //onTap: () {
+              //Get.to(() => const KeteranganPage());
+            //},
+            //leading: const Icon(Icons.description),
+            //horizontalTitleGap: 0,
+            title: const Text('*Pada tambah baru, nilai validasi harus lebih besar dari nominal pemasukan/pengeluaran'),
+            //trailing: const Icon(Icons.navigate_next),
           ),
-          const Divider(height: 1),*/
+          const Divider(height: 1),
         ],
       ),
     );

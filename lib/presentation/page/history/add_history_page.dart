@@ -17,7 +17,13 @@ import '../../controller/c_user.dart';
 import '../../controller/history/c_add_history.dart';
 
 class AddHistoryPage extends StatelessWidget {
-  AddHistoryPage({Key? key}) : super(key: key);
+  final double saldo;
+
+  AddHistoryPage({
+    Key? key,
+    this.saldo = 0.0,
+  }) : super(key: key);
+
   final cAddHistory = Get.put(CAddHistory());
   final cUser = Get.put(CUser());
   final controllerName = TextEditingController();
@@ -38,13 +44,13 @@ class AddHistoryPage extends StatelessWidget {
     }
   }
 
-  validation() async {
+  /*validation() async {
     if (controllerPrice2 == controllerPrice) {
       print("Pengeluaran melebihi pemasukan !!");
     } else {
       true;
     }
-  }
+  }*/
 
 /*   DValidator hargaValidator(String? value) {
     int pemasukan = int.tryParse(value.toString()) ?? 0;
@@ -126,42 +132,38 @@ class AddHistoryPage extends StatelessWidget {
           DInput(
             controller: controllerName,
             hint: 'Jualan',
-            title: 'Sumber/Objek Pengeluaran',
+            title: 'Sumber/Objek (Pemasukan/Pengeluaran)',
           ),
-
-
           DView.spaceHeight(),
           DInput(
             controller: controllerPrice,
-            hint: '30000',
-            title: 'Pemasukan',
+            hint: '99999999999',
+            title: 'Validasi (Pemasukan/Pengeluaran)',
             inputType: TextInputType.number,
             validator: (value) {
               if (value != null && controllerPrice2.text.isNotEmpty) {
                 int pemasukan = int.tryParse(value.toString()) ?? 0;
                 int harga = int.tryParse(controllerPrice2.text) ?? 0;
                 if (harga >= pemasukan) {
-                  return "Pemasukan Lebih Kecil dari Harga";
+                  return "Validasi Harus Lebih Besar Dari Nominal Pemasukan/Pengeluaran";
                 }
               }
 
               return null;
             },
           ),
-
-
           DView.spaceHeight(),
           DInput(
             controller: controllerPrice2,
             hint: '30000',
-            title: 'Harga',
+            title: 'Nominal Pemasukan/Pengeluaran',
             inputType: TextInputType.number,
             validator: (value) {
               if (value != null && controllerPrice.text.isNotEmpty) {
                 int pemasukan = int.tryParse(controllerPrice.text) ?? 0;
                 int harga = int.tryParse(value.toString()) ?? 0;
                 if (harga >= pemasukan) {
-                  return "Harga Lebih Kecil dari Pemasukan";
+                  return "Validasi Harus Lebih Besar Dari Nominal Pemasukan/Pengeluaran";
                 }
               }
 
@@ -171,6 +173,12 @@ class AddHistoryPage extends StatelessWidget {
           DView.spaceHeight(),
           ElevatedButton(
             onPressed: () {
+              /*cAddHistory.addItem({
+                'name': controllerName.text,
+                'price': controllerPrice.text,
+              });
+              controllerName.clear();
+              controllerPrice.clear();*/
               int pemasukan = int.tryParse(controllerPrice.text) ?? 0;
               int harga = int.tryParse(controllerPrice2.text) ?? 0;
               if (harga >= pemasukan) {
@@ -191,22 +199,6 @@ class AddHistoryPage extends StatelessWidget {
             },
             child: const Text('Tambah ke Items'),
           ),
-          /*if () {
-                cAddHistory.addItem({
-                  'name': controllerName.text,
-                  'price': controllerPrice.text,
-                  'price2': controllerPrice2.text,
-                });
-              } else {
-                print("Pengeluaran melebihi pemasukan !!");
-              }
-              cAddHistory.addItem({});
-              controllerName.clear();
-              controllerPrice.clear();
-              controllerPrice2.clear();
-            },
-            child: const Text('Tambah ke Items'),
-          ),*/
           DView.spaceHeight(),
           Center(
             child: Container(

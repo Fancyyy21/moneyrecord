@@ -50,6 +50,8 @@ class SourceHistory {
       if (responseBody['message'] == 'date') {
         DInfo.dialogError(
             'History dengan tanggal tersebut sudah pernah dibuat');
+      } else if (responseBody['isSaldo'] == true) {
+        DInfo.dialogError(responseBody['message']);
       } else {
         DInfo.dialogError('Gagal Tambah History');
       }
