@@ -72,13 +72,19 @@ class CHome extends GetxController {
 
     _monthIncome.value = data['month']['income'].toDouble();
     _monthOutcome.value = data['month']['outcome'].toDouble();
+
     _differentMonth.value = (monthIncome - monthOutcome).abs();
+
     bool isSameMonth = monthIncome.isEqual(monthOutcome);
     bool isPlusMonth = monthIncome.isGreaterThan(monthOutcome);
+
     double dividerMonth =
-        (monthIncome + monthOutcome) == 0 ? 1 : (monthIncome + monthOutcome);
+        (monthIncome + monthIncome) == 0 ? 1 : (monthIncome + monthOutcome);
     double percentMonth = (differentMonth / dividerMonth) * 100;
+    
+
     _percentIncome.value = percentMonth.toStringAsFixed(1);
+    //monthIncome < monthOutcome ? percentMonth * -1 : percentMonth;
     _monthPercent.value = isSameMonth
         ? 'Pemasukan\n100% sama\ndengan Pengeluaran'
         : isPlusMonth

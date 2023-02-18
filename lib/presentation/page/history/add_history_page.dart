@@ -126,22 +126,22 @@ class AddHistoryPage extends StatelessWidget {
           DInput(
             controller: controllerName,
             hint: 'Jualan',
-            title: 'Sumber/Objek Pengeluaran',
+            title: 'Sumber/Objek (Pemasukan/Pengeluaran)',
           ),
 
 
           DView.spaceHeight(),
           DInput(
             controller: controllerPrice,
-            hint: '30000',
-            title: 'Pemasukan',
+            hint: '99999999999',
+            title: 'Validasi (Pemasukan/Pengeluaran)',
             inputType: TextInputType.number,
             validator: (value) {
               if (value != null && controllerPrice2.text.isNotEmpty) {
                 int pemasukan = int.tryParse(value.toString()) ?? 0;
                 int harga = int.tryParse(controllerPrice2.text) ?? 0;
                 if (harga >= pemasukan) {
-                  return "Pemasukan Lebih Kecil dari Harga";
+                  return "Validasi Harus Lebih Besar Dari Nominal Pemasukan/Pengeluaran";
                 }
               }
 
@@ -154,14 +154,14 @@ class AddHistoryPage extends StatelessWidget {
           DInput(
             controller: controllerPrice2,
             hint: '30000',
-            title: 'Harga',
+            title: 'Nominal Pemasukan/Pengeluaran',
             inputType: TextInputType.number,
             validator: (value) {
               if (value != null && controllerPrice.text.isNotEmpty) {
                 int pemasukan = int.tryParse(controllerPrice.text) ?? 0;
                 int harga = int.tryParse(value.toString()) ?? 0;
                 if (harga >= pemasukan) {
-                  return "Harga Lebih Kecil dari Pemasukan";
+                  return "Validasi Harus Lebih Besar Dari Nominal Pemasukan/Pengeluaran";
                 }
               }
 
